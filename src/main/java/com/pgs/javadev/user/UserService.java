@@ -13,7 +13,7 @@ public class UserService {
 
     private Map<Long, User> users = Collections.synchronizedMap(new HashMap<>());
 
-    private AtomicLong idGenerator;
+    private AtomicLong idGenerator = new AtomicLong();
 
     public UserService() {
         Long id = idGenerator.getAndIncrement();
