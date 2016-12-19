@@ -1,14 +1,30 @@
 package com.pgs.javadev.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  * Created by andrzej on 05.12.16.
  */
+@Entity
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotEmpty
     private String firstName;
+
+    @NotEmpty
     private String lastName;
     private String displayName;
+
+    @NotEmpty
     private String email;
 
     public User() {
