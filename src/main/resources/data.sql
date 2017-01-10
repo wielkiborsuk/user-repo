@@ -1,4 +1,21 @@
-INSERT INTO USER VALUES(1,'J Kowalski','jkowalski@pgs-soft.com','Janek','Kowalski');
-INSERT INTO USER VALUES(2,'Z Martyniuks','zmartyniuk@pgs-soft.com','Zenon','Martyniuk');
-INSERT INTO USER VALUES(3,'A Bolanowski','abolanowski@pgs-soft.com','Andrzej','Bolanowski');
+INSERT INTO USER VALUES(1,'1988-01-01 00:00:00','J Kowalski','jkowalski@pgs-soft.com','Janek','Kowalski', 1);
+INSERT INTO USER VALUES(2,'1988-01-01 00:00:00','Z Martyniuks','zmartyniuk@pgs-soft.com','Zenon','Martyniuk', 1);
+INSERT INTO USER VALUES(3,'1988-01-01 00:00:00','A Bolanowski','abolanowski@pgs-soft.com','Andrzej','Bolanowski', 1);
 
+INSERT INTO PHONE VALUES('123-123-123', 1);
+INSERT INTO PHONE VALUES('234-234-234', 1);
+INSERT INTO PHONE VALUES('432-432-423', 2);
+INSERT INTO PHONE VALUES('700-112-112', 3);
+INSERT INTO PHONE VALUES('997', 3);
+
+INSERT INTO ADDRESS VALUES(1,'Rzeszów','2','Krakowska','35-110');
+INSERT INTO ADDRESS VALUES(2,'Rzeszów','4','Krakowska','35-110');
+INSERT INTO ADDRESS VALUES(3,'Warszawa','10a','Marszałkowska','10-234');
+INSERT INTO ADDRESS VALUES(4,'Kołobrzeg','1b','Warneńczyka','22-222');
+
+INSERT INTO USER_ADDRESSES VALUES(1, 1);
+INSERT INTO USER_ADDRESSES VALUES(1, 4);
+INSERT INTO USER_ADDRESSES VALUES(2, 2);
+INSERT INTO USER_ADDRESSES VALUES(2, 4);
+INSERT INTO USER_ADDRESSES VALUES(3, 3);
+INSERT INTO USER_ADDRESSES VALUES(3, 2);
