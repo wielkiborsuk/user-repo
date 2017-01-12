@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>user repo</title>
+  <link rel="stylesheet" href="css/main.css" type="text/css" media="all" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
   <script type="text/javascript" charset="utf-8" src="js/main.js"></script>
 </head>
@@ -11,13 +12,17 @@
     <ul>
       <li ng-repeat="user in vm.userList">
         <div ng-if="!user.edit">
-          <pre>
-<span ng-bind="user.displayName"></span>
-<span ng-bind="user.firstName"></span>
-<span ng-bind="user.lastName"></span>
-  <span>  </span><div ng-repeat="phone in user.phones" ng-bind="phone.number"></div>
-          </pre>
-          <button ng-click="user.edit=true">edytuj</button>
+          <ul>
+            <li ng-bind="user.displayName"></li>
+            <li ng-bind="user.firstName"></li>
+            <li ng-bind="user.lastName"></li>
+            <li>
+              <ul>
+                <li ng-repeat="phone in user.phones" ng-bind="phone.number"></li>
+              </ul>
+            </li>
+          </ul>
+          <button ng-click="vm.edit(user)">edytuj</button>
         </div>
 
         <div ng-if="user.edit">
@@ -25,7 +30,7 @@
           <input type="text" ng-model="user.firstName"></input>
           <input type="text" ng-model="user.lastName"></input>
           <input type="text" ng-repeat="phone in user.phones" ng-model="phone.number"></input>
-          <button ng-click="user.edit=false">anuluj</button>
+          <button ng-click="vm.cancel(user)">anuluj</button>
           <button ng-click="vm.save(user)">zapisz</button>
         </div>
       </li>

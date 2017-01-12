@@ -12,12 +12,24 @@ app.controller('UserController', function ($http, $timeout) {
 
   vm.save = function (user) {
     $http.put('/user/' + user.id, user).then(function (response) {
+      delete user.original;
       user.edit = false;
       toast('user saved successfully');
     }, function () {
       toast('there was an issue during user save');
     });
   };
+
+  vm.edit = function (user) {
+    user.original = angular.copy(user);
+    user.edit = true;
+  }
+
+  vm.cancel = function (user) {
+    angular.merge(user, user.original);
+    delete user.original;
+    user.edit = false;
+  }
 
   function toast(message) {
     if (state.lastTimeout) {
