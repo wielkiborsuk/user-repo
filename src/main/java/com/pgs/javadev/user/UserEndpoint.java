@@ -1,11 +1,13 @@
 package com.pgs.javadev.user;
 
-import com.pgs.javadev.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.http.HttpStatus;
+
+import com.pgs.javadev.model.User;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -20,7 +22,7 @@ public class UserEndpoint {
     }
 
     @GetMapping
-    public List<User> getUsers() {
+    public Iterable<User> getUsers() {
         return userService.getAllUsers();
     }
 

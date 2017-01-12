@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="user-repo">
+<head>
+  <meta charset="utf-8">
+  <title>user repo</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="js/main.js"></script>
+</head>
+<body ng-controller="UserController as vm">
+  <div>
+    <ul>
+      <li ng-repeat="user in vm.userList">
+        <div>
+          <pre>
+<span ng-bind="user.displayName"></span>
+<span ng-bind="user.firstName"></span>
+<span ng-bind="user.lastName"></span>
+  <div ng-repeat="phone in user.phones" ng-bind="phone.number"></div>
+          </pre>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <span ng-bind="vm.footerMessage"></span>
+  </div>
+</body>
+</html>

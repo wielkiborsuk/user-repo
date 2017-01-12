@@ -5,16 +5,20 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -24,6 +28,8 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class User {
 
@@ -43,10 +49,11 @@ public class User {
   @JsonFormat(pattern = "yyyy-MM-dd")
   private Date birthDate;
 
-  @OneToMany(mappedBy = "user")
+  @OneToMany(cascade = CascadeType.ALL)
+  @JoinColumn(name = "userId")
   private Set<Phone> phones;
 
-  @ManyToMany
+  @ManyToMany(cascade = CascadeType.MERGE)
   private Set<Address> addresses;
 
   @NotEmpty

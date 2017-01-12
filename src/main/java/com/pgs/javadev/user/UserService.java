@@ -21,10 +21,8 @@ public class UserService {
       return userRepository.save(user);
     }
 
-    public List<User> getAllUsers() {
-      ArrayList<User> users = new ArrayList<User>();
-      userRepository.findAll().forEach(users::add);
-      return users;
+    public Iterable<User> getAllUsers() {
+      return userRepository.findAll();
     }
 
     public User getDetails(Long id) {
