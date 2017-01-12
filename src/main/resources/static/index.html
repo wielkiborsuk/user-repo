@@ -10,13 +10,23 @@
   <div>
     <ul>
       <li ng-repeat="user in vm.userList">
-        <div>
+        <div ng-if="!user.edit">
           <pre>
 <span ng-bind="user.displayName"></span>
 <span ng-bind="user.firstName"></span>
 <span ng-bind="user.lastName"></span>
-  <div ng-repeat="phone in user.phones" ng-bind="phone.number"></div>
+  <span>  </span><div ng-repeat="phone in user.phones" ng-bind="phone.number"></div>
           </pre>
+          <button ng-click="user.edit=true">edytuj</button>
+        </div>
+
+        <div ng-if="user.edit">
+          <input type="text" ng-model="user.displayName"></input>
+          <input type="text" ng-model="user.firstName"></input>
+          <input type="text" ng-model="user.lastName"></input>
+          <input type="text" ng-repeat="phone in user.phones" ng-model="phone.number"></input>
+          <button ng-click="user.edit=false">anuluj</button>
+          <button ng-click="vm.save(user)">zapisz</button>
         </div>
       </li>
     </ul>

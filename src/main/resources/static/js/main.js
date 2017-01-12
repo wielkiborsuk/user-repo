@@ -11,7 +11,8 @@ app.controller('UserController', function ($http, $timeout) {
   });
 
   vm.save = function (user) {
-    $http.put('/user/' + user.id).then(function (response) {
+    $http.put('/user/' + user.id, user).then(function (response) {
+      user.edit = false;
       toast('user saved successfully');
     }, function () {
       toast('there was an issue during user save');
