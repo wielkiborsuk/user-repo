@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.pgs.javadev.exception.NotFoundException;
 import com.pgs.javadev.model.User;
-import com.pgs.javadev.model.UserBuilder;
 import java.util.*;
 
 @Service
@@ -22,10 +21,8 @@ public class UserService {
       return userRepository.save(user);
     }
 
-    public List<User> getAllUsers() {
-      ArrayList<User> users = new ArrayList<User>();
-      userRepository.findAll().forEach(users::add);
-      return users;
+    public Iterable<User> getAllUsers() {
+      return userRepository.findAll();
     }
 
     public User getDetails(Long id) {
