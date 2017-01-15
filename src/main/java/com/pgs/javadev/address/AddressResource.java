@@ -31,11 +31,21 @@ public class AddressResource {
 
   @PutMapping(value = "/{id}")
   public void updateAddress(@PathVariable Long id, @RequestBody Address address) {
+    if (id != address.getId()) {
+      throw new IllegalStateException("Wrong id used in request and in payload.");
+    }
+
     addressRepository.save(address);
   }
 
   @DeleteMapping(value = "/{id}")
   public void removeAddress(@PathVariable Long id) {
     addressRepository.delete(id);
+  }
+
+  @ResponseStatus(value= HttpStatus.BAD_REQUEST, reason="Bad request.")
+  @ExceptionHandler(IllegalStateException.class)
+  public void illegalState() {
+    System.out.println("Exception handling");
   }
 }

@@ -15,8 +15,19 @@ app.controller('UserController', function ($http, $timeout) {
       delete user.original;
       user.edit = false;
       toast('user saved successfully');
-    }, function () {
-      toast('there was an issue during user save');
+    }, function (response) {
+      var message = response.data.message;
+
+      if (response.data.errors && response.data.errors.length > 0) {
+        console.log('inside');
+        console.log(message);
+        message = response.data.errors.reduce(function (p, c, i, a) {
+          return p + '\nfield: ' + c.field + '\n' + c.defaultMessage + '\nwrong value: ' + c.rejectedValue;
+        }, '');
+        console.log(message);
+      }
+
+      toast('there was an issue during user save \n' + message);
     });
   };
 

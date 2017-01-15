@@ -1,10 +1,11 @@
 package com.pgs.javadev.phone;
 
-import java.util.List;
 
-import lombok.Data;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import org.springframework.http.HttpStatus;
 
@@ -35,11 +36,27 @@ public class PhoneResource {
 
   @PutMapping(value = "/{id}")
   public void updatePhone(@PathVariable Long id, @RequestBody Phone phone) {
+    if (id != phone.getId()) {
+      throw new IllegalStateException("Wrong id used in request and in payload.");
+    }
+
     phoneRepository.save(phone);
   }
 
   @DeleteMapping(value = "/{id}")
   public void removePhone(@PathVariable Long id) {
     phoneRepository.delete(id);
+  }
+
+  @ResponseStatus(value= HttpStatus.BAD_REQUEST, reason="Bad request.")
+  @ExceptionHandler(IllegalStateException.class)
+  public void illegalState() {
+    System.out.println("Exception handling");
+  }
+
+  @ResponseStatus(value= HttpStatus.BAD_REQUEST, reason="Phone number must be unique.")
+  @ExceptionHandler(DataIntegrityViolationException.class)
+  public void constraintViolation() {
+    System.out.println("Exception handling");
   }
 }

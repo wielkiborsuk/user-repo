@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import javax.validation.Valid;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -49,10 +51,12 @@ public class User {
   @JsonFormat(pattern = "yyyy-MM-dd")
   private Date birthDate;
 
+  @Valid
   @OneToMany(cascade = CascadeType.ALL)
   @JoinColumn(name = "userId")
   private Set<Phone> phones;
 
+  @Valid
   @ManyToMany(cascade = CascadeType.MERGE)
   private Set<Address> addresses;
 

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,6 +30,6 @@ public class Address {
   private String city;
 
   @JsonIgnore
-  @ManyToMany(mappedBy = "addresses")
+  @ManyToMany(mappedBy = "addresses", cascade = CascadeType.PERSIST)
   private Set<User> tennants;
 }
